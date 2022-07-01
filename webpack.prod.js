@@ -7,11 +7,11 @@ const lib = path.resolve(__dirname, 'src/index.js');
 module.exports = merge(config, {
   mode: 'production',
   entry: {
-    paperplease: lib,
+    bigbro: lib,
   },
   output: {
     library: {
-      name: 'paperplease',
+      name: 'bigbro',
       type: 'umd',
     },
   },

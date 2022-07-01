@@ -1,25 +1,27 @@
 {
-  "name": "paperplease",
+  "name": "@nab/bigbro",
   "version": "1.0.0",
   "description": "A complete event library",
   "source": "src/index.js",
-  "main": "lib/paperplease.js",
+  "main": "lib/bigbro.js",
   "module": "src/index.js",
   "scripts": {
     "start": "webpack serve --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --config webpack.prod.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NabilKharrich/paperplease.git"
+    "url": "git+https://github.com/NabilKharrich/bigbro.git"
   },
   "author": "Nabil Kharrich",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/NabilKharrich/paperplease/issues"
+    "url": "https://github.com/NabilKharrich/bigbro/issues"
   },
-  "homepage": "https://github.com/NabilKharrich/paperplease#readme",
+  "homepage": "https://github.com/NabilKharrich/bigbro#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@swc/core": "^1.2.203",
     "eslint": "^8.17.0",

@@ -15,5 +15,5 @@ module.exports = merge(config, {
     test,
   },
   stats: 'minimal',
-  plugins: [new HtmlWebpackPlugin({ template }), new BundleAnalyzerPlugin()],
+  plugins: [new HtmlWebpackPlugin({ template })],
 });
