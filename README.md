@@ -31,8 +31,6 @@ A complete event library
 
 Adds a new bus event callback or event listener
 
-**Kind**: global constant
-
 | Param  | Type                                            | Description                      |
 | ------ | ----------------------------------------------- | -------------------------------- |
 | first  | <code>string</code> \| <code>Element</code>     | bus event name or dom element    |
@@ -46,8 +44,6 @@ Adds a new bus event callback or event listener
 
 Removes a bus event callback or event listener
 
-**Kind**: global constant
-
 | Param  | Type                                            | Description                      |
 | ------ | ----------------------------------------------- | -------------------------------- |
 | first  | <code>string</code> \| <code>Element</code>     | bus event name or dom element    |
@@ -59,8 +55,6 @@ Removes a bus event callback or event listener
 ## once
 
 Adds the event and removes it after the first occurrence
-
-**Kind**: global constant
 
 | Param  | Type                                            | Description                      |
 | ------ | ----------------------------------------------- | -------------------------------- |
@@ -75,8 +69,6 @@ Adds the event and removes it after the first occurrence
 
 Emits the given event
 
-**Kind**: global constant
-
 | Param     | Type                | Description                           |
 | --------- | ------------------- | ------------------------------------- |
 | event     | <code>string</code> | bus event name                        |
@@ -88,8 +80,6 @@ Emits the given event
 
 Emits the given event asyncronously
 
-**Kind**: global constant
-
 | Param     | Type                | Description                           |
 | --------- | ------------------- | ------------------------------------- |
 | event     | <code>string</code> | bus event name                        |
@@ -97,9 +87,7 @@ Emits the given event asyncronously
 
 <a name="inspect"></a>
 
-## inspect ⇒
+## inspect ⇒ <code>Object</code>
 
 Returns a clone of the events stack. Usefull for debugging
-
-**Kind**: global constant  
 **Returns**: Object
