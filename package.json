@@ -1,6 +1,6 @@
 {
-  "name": "@nab/bigbro",
-  "version": "1.0.0",
+  "name": "@fromnab/bigbro",
+  "version": "0.0.0",
   "description": "A complete event library",
   "source": "src/index.js",
   "main": "lib/bigbro.js",
@@ -36,5 +36,8 @@
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.9.2",
     "webpack-merge": "^5.8.0"
+  },
+  "directories": {
+    "example": "examples"
   }
 }
