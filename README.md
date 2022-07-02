@@ -2,6 +2,9 @@
 
 A complete event library
 
+![license](https://img.shields.io/github/license/NabilKharrich/bigbro)
+![npm](https://img.shields.io/npm/v/@nab/bigbro)
+
 ## Constants
 
 <dl>
