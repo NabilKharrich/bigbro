@@ -6,7 +6,14 @@ import {
   splitEvents,
 } from './utils';
 
-export const on = (first, middle, last, opts) => {
+/**
+ * Adds a new bus event callback or event listener
+ * @param {string|Element} first bus event name or dom element
+ * @param {string|Function} middle bus event callback or event type
+ * @param {Function|undefined} last listener callback
+ * @param {Object} opts event type options
+ */
+export const on = (first, middle, last = undefined, opts = {}) => {
   const e = splitEvents(!last ? first : middle);
 
   if (!last) {
@@ -27,6 +34,12 @@ export const on = (first, middle, last, opts) => {
   }
 };
 
+/**
+ * Removes a bus event callback or event listener
+ * @param {string|Element} first bus event name or dom element
+ * @param {string|Function} middle bus event callback or event type
+ * @param {Function|undefined} last listener callback
+ */
 export const off = (first, middle, last) => {
   const e = splitEvents(!last ? first : middle);
 
@@ -46,21 +59,49 @@ export const off = (first, middle, last) => {
   }
 };
 
-export const once = (events, cb) => {
-  on(events, async function fn() {
-    off(events, fn);
-    await cb();
-  });
+/**
+ * Adds the event and removes it after the first occurrence
+ * @param {string|Element} first bus event name or dom element
+ * @param {string|Function} middle bus event callback or event type
+ * @param {Function|undefined} last listener callback
+ * @param {Object} opts event type options
+ */
+export const once = (first, middle, last = undefined, opts = {}) => {
+  if (!last) {
+    const fn = async () => {
+      off(first, fn);
+      await middle();
+    };
+
+    on(first, fn);
+  } else {
+    const fn = () => {
+      last();
+      off(first, middle, fn);
+    };
+
+    on(first, middle, fn, opts);
+  }
 };
 
+/**
+ * Emits the given event
+ * @param {string} event bus event name
+ * @param  {...any} params optional parameters for the callbacks
+ */
 export const emit = (event, ...params) => {
   if (!eventsStack[event]) return;
 
   for (let i = 0; i < eventsStack[event].length; i++) {
-    eventsStack[event[i]](...params);
+    eventsStack[event][i](...params);
   }
 };
 
+/**
+ * Emits the given event asyncronously
+ * @param {string} event bus event name
+ * @param  {...any} params optional parameters for the callbacks
+ */
 export const emitAsync = (event, ...params) => {
   if (!eventsStack[event]) return;
 
@@ -69,4 +110,8 @@ export const emitAsync = (event, ...params) => {
   );
 };
 
-export const inspect = (event) => clone(event);
+/**
+ * Returns a clone of the events stack. Usefull for debugging
+ * @returns Object
+ */
+export const inspect = () => clone();

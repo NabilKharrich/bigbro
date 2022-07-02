@@ -1,19 +1,19 @@
-import { emit, inspect, on, once } from '../src';
-import { listenerExists } from '../src/utils';
+import { emit, inspect, on, off, once } from '../src';
+
+function debounce(func, timeout = 300) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
+}
+const log = debounce(() => console.log('resize'));
 
 const btn = document.querySelector('.btn');
-const offbtn = document.querySelector('.off-btn');
 
-function cb() {
-  console.log('once!');
-}
-
-on('he.ho', (cb) => {});
-on('myev', cb);
+once('myEv', () => console.log('ev!'));
+once(window, 'resize', log);
 console.log(inspect());
-console.log(listenerExists('myev', cb));
-// on('click', btn, () => {
-//   emit('myev');
-// });
-
-on(window, 'resize', () => console.log('hello'));
+on(btn, 'click', () => emit('myEv'));
