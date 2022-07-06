@@ -1,6 +1,6 @@
 {
   "name": "@nabilk/bigbro",
-  "version": "2.0.0",
+  "version": "0.0.0",
   "description": "A complete event library",
   "source": "src/index.js",
   "main": "lib/bigbro.js",
