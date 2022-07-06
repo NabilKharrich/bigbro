@@ -1,5 +1,5 @@
 {
-  "name": "@fromnab/bigbro",
+  "name": "@nabilk/bigbro",
   "version": "0.0.0",
   "description": "A complete event library",
   "source": "src/index.js",
