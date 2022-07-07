@@ -14,6 +14,13 @@
     "type": "git",
     "url": "git+https://github.com/NabilKharrich/bigbro.git"
   },
+  "keywords": [
+    "event",
+    "pubsub",
+    "observer-pattern",
+    "emitter",
+    "event-emitter"
+  ],
   "author": "Nabil Kharrich",
   "license": "MIT",
   "bugs": {
