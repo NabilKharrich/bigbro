@@ -1,13 +1,18 @@
 {
-  "jsc": {
-    "parser": {
-      "syntax": "ecmascript",
-      "dynamicImport": true
+    "jsc": {
+        "parser": {
+            "syntax": "ecmascript"
+        },
+        "target": "es2015",
+        "loose": true,
+        "minify": {
+            "compress": true,
+            "mangle": true
+        },
+        "externalHelpers": false
     },
-    "target": "es2020"
-  },
-  "minify": false,
-  "module": {
-    "type": "umd"
-  }
+    "minify": true,
+    "module": {
+        "type": "commonjs"
+    }
 }
