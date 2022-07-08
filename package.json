@@ -3,11 +3,11 @@
   "version": "1.0.4",
   "description": "A complete event library",
   "source": "src/index.js",
-  "main": "dist/index.js",
-  "module": "src/index.js",
+  "main": "dist/main.js",
+  "module": "dist/module.js",
   "scripts": {
-    "start": "webpack serve --open --config webpack.dev.js",
-    "build": "swc src/index.js -d dist",
+    "watch": "parcel watch",
+    "build": "parcel build",
     "doc": "jsdoc2md src/index.js"
   },
   "repository": {
