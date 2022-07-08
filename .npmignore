@@ -1,6 +1,9 @@
 node_modules
+dist
+test
 .parcel-cache
 .eslintrc
 .prettierignore
 .prettierrc
 .nvmrc
+jsconfig.json
