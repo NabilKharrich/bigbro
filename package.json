@@ -1,14 +1,16 @@
 {
   "name": "@nabilk/bigbro",
   "description": "A complete event library",
-  "version": "1.0.8",
+  "version": "1.0.7",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/bigbro.es.js",
-      "require": "./dist/bigbro.umd.js"
+      "import": "./dist/bigbro.mjs",
+      "require": "./dist/bigbro.umd.cjs"
     }
   },
+  "module": "./dist/bigbro.mjs",
+  "main": "./dist/bigbro.umd.cjs",
   "files": [
     "dist"
   ],
@@ -44,5 +46,9 @@
     "eslint-plugin-prettier": "^4.0.0",
     "jsdoc-to-markdown": "^7.1.1",
     "vite": "^3.0.0"
+  },
+  "dependencies": {
+    "@angular/cli": "^14.0.5",
+    "@angular/router": "^14.0.6"
   }
 }
