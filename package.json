@@ -1,20 +1,23 @@
 {
   "name": "@nabilk/bigbro",
-  "version": "1.0.6",
   "description": "A complete event library",
-  "source": "./src/index.js",
-  "main": "./build/main.js",
-  "module": "./build/module.js",
+  "version": "1.0.6",
+  "type": "module",
+  "main": "./dist/bigbro.umd.js",
+  "module": "./dist/bigbro.es.js",
   "exports": {
     ".": {
-      "import": "./build/module.js",
-      "require": "./build/main.js"
+      "import": "./dist/bigbro.es.js",
+      "require": "./dist/bigbro.umd.js"
     }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "start": "parcel test/src/index.html",
-    "watch": "parcel watch",
-    "build": "parcel build --dist-dir build",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "doc": "jsdoc2md src/index.js"
   },
   "repository": {
@@ -42,6 +45,6 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jsdoc-to-markdown": "^7.1.1",
-    "parcel": "^2.0.0-rc.0"
+    "vite": "^3.0.0"
   }
 }
