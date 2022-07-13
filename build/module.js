@@ -1,62 +1,71 @@
-const $f3ad94c9f84f4d57$export$7da141185b3e32e1 = {};
-const $f3ad94c9f84f4d57$export$9cd59f9826255e47 = ()=>({
-        ...$f3ad94c9f84f4d57$export$7da141185b3e32e1
-    });
-const $f3ad94c9f84f4d57$export$c30017717ce2168e = (event)=>$f3ad94c9f84f4d57$export$7da141185b3e32e1[event] = $f3ad94c9f84f4d57$export$7da141185b3e32e1[event] || [];
-const $f3ad94c9f84f4d57$export$1a518478532057c4 = (event, cb)=>!!$f3ad94c9f84f4d57$export$7da141185b3e32e1[event]?.includes(cb);
-const $f3ad94c9f84f4d57$export$39ca70c0c3146e3f = (events)=>events.split(" ");
+const $6afcfcf6e95cca97$export$b2f26029f53ad665 = {
+};
+const $6afcfcf6e95cca97$export$d6a0542127b96c83 = ()=>({
+        ...$6afcfcf6e95cca97$export$b2f26029f53ad665
+    })
+;
+const $6afcfcf6e95cca97$export$19c80410cdfe2545 = (event)=>$6afcfcf6e95cca97$export$b2f26029f53ad665[event] = $6afcfcf6e95cca97$export$b2f26029f53ad665[event] || []
+;
+const $6afcfcf6e95cca97$export$1d00de2f2e645788 = (event, cb)=>!!$6afcfcf6e95cca97$export$b2f26029f53ad665[event]?.includes(cb)
+;
+const $6afcfcf6e95cca97$export$d3df29757be4793d = (events)=>events.split(' ')
+;
 
 
-const $cf838c15c8b009ba$export$af631764ddc44097 = (first, middle, last, opts = {})=>{
-    const e = (0, $f3ad94c9f84f4d57$export$39ca70c0c3146e3f)(!last ? first : middle);
+const $fd0e4966f38fc4e4$export$b4cd8de5710bc55c = (first, middle, last, opts = {
+})=>{
+    const e = $6afcfcf6e95cca97$export$d3df29757be4793d(!last ? first : middle);
     if (!last) for(let i = 0; i < e.length; i++){
         const ev = e[i];
-        if ((0, $f3ad94c9f84f4d57$export$1a518478532057c4)(ev, middle)) return;
-        (0, $f3ad94c9f84f4d57$export$c30017717ce2168e)(ev);
-        middle && (0, $f3ad94c9f84f4d57$export$7da141185b3e32e1)[ev].push(middle);
+        if ($6afcfcf6e95cca97$export$1d00de2f2e645788(ev, middle)) return;
+        $6afcfcf6e95cca97$export$19c80410cdfe2545(ev);
+        middle && $6afcfcf6e95cca97$export$b2f26029f53ad665[ev].push(middle);
     }
     else for(let i1 = 0; i1 < e.length; i1++){
         const ev = e[i1];
         first.addEventListener(ev, last, opts);
     }
 };
-const $cf838c15c8b009ba$export$8c8705df4a2dcec9 = (first, middle, last)=>{
-    const e = (0, $f3ad94c9f84f4d57$export$39ca70c0c3146e3f)(!last ? first : middle);
+const $fd0e4966f38fc4e4$export$27450a6de0750f89 = (first, middle, last)=>{
+    const e = $6afcfcf6e95cca97$export$d3df29757be4793d(!last ? first : middle);
     if (!last) for(let i = 0; i < e.length; i++){
         const ev = e[i];
-        if (!(0, $f3ad94c9f84f4d57$export$1a518478532057c4)(ev, middle)) return;
-        (0, $f3ad94c9f84f4d57$export$7da141185b3e32e1)[ev].splice((0, $f3ad94c9f84f4d57$export$7da141185b3e32e1)[ev].indexOf(middle), 1);
+        if (!$6afcfcf6e95cca97$export$1d00de2f2e645788(ev, middle)) return;
+        $6afcfcf6e95cca97$export$b2f26029f53ad665[ev].splice($6afcfcf6e95cca97$export$b2f26029f53ad665[ev].indexOf(middle), 1);
     }
-    else for(let i2 = 0; i2 < e.length; i2++){
-        const ev = e[i2];
+    else for(let i1 = 0; i1 < e.length; i1++){
+        const ev = e[i1];
         first.removeEventListener(ev, last);
     }
 };
-const $cf838c15c8b009ba$export$d2de3aaeafa91619 = (first, middle, last, opts = {})=>{
+const $fd0e4966f38fc4e4$export$7bd69e88aabac8f1 = (first, middle, last, opts = {
+})=>{
     if (!last) {
         const fn = async ()=>{
-            $cf838c15c8b009ba$export$8c8705df4a2dcec9(first, fn);
+            $fd0e4966f38fc4e4$export$27450a6de0750f89(first, fn);
             await middle();
         };
-        $cf838c15c8b009ba$export$af631764ddc44097(first, fn);
+        $fd0e4966f38fc4e4$export$b4cd8de5710bc55c(first, fn);
     } else {
         const fn = ()=>{
             last();
-            $cf838c15c8b009ba$export$8c8705df4a2dcec9(first, middle, fn);
+            $fd0e4966f38fc4e4$export$27450a6de0750f89(first, middle, fn);
         };
-        $cf838c15c8b009ba$export$af631764ddc44097(first, middle, fn, opts);
+        $fd0e4966f38fc4e4$export$b4cd8de5710bc55c(first, middle, fn, opts);
     }
 };
-const $cf838c15c8b009ba$export$8f35fbd5db0f3634 = (event, ...params)=>{
-    if (!(0, $f3ad94c9f84f4d57$export$7da141185b3e32e1)[event]) return;
-    for(let i = 0; i < (0, $f3ad94c9f84f4d57$export$7da141185b3e32e1)[event].length; i++)(0, $f3ad94c9f84f4d57$export$7da141185b3e32e1)[event][i](...params);
+const $fd0e4966f38fc4e4$export$3138d72b1819ff86 = (event, ...params)=>{
+    if (!$6afcfcf6e95cca97$export$b2f26029f53ad665[event]) return;
+    for(let i = 0; i < $6afcfcf6e95cca97$export$b2f26029f53ad665[event].length; i++)$6afcfcf6e95cca97$export$b2f26029f53ad665[event][i](...params);
 };
-const $cf838c15c8b009ba$export$a55832f0bda23207 = (event, ...params)=>{
-    if (!(0, $f3ad94c9f84f4d57$export$7da141185b3e32e1)[event]) return;
-    return Promise.all((0, $f3ad94c9f84f4d57$export$7da141185b3e32e1)[event].map((cb)=>Promise.resolve(cb(...params))));
+const $fd0e4966f38fc4e4$export$46c54e4f8c1e17a1 = (event, ...params)=>{
+    if (!$6afcfcf6e95cca97$export$b2f26029f53ad665[event]) return;
+    return Promise.all($6afcfcf6e95cca97$export$b2f26029f53ad665[event].map((cb)=>Promise.resolve(cb(...params))
+    ));
 };
-const $cf838c15c8b009ba$export$9dec5d1b3b6a130d = ()=>(0, $f3ad94c9f84f4d57$export$9cd59f9826255e47)();
+const $fd0e4966f38fc4e4$export$f68a7c3078a08370 = ()=>$6afcfcf6e95cca97$export$d6a0542127b96c83()
+;
 
 
-export {$cf838c15c8b009ba$export$af631764ddc44097 as on, $cf838c15c8b009ba$export$8c8705df4a2dcec9 as off, $cf838c15c8b009ba$export$d2de3aaeafa91619 as once, $cf838c15c8b009ba$export$8f35fbd5db0f3634 as emit, $cf838c15c8b009ba$export$a55832f0bda23207 as emitAsync, $cf838c15c8b009ba$export$9dec5d1b3b6a130d as inspect};
+export {$fd0e4966f38fc4e4$export$27450a6de0750f89 as off, $fd0e4966f38fc4e4$export$3138d72b1819ff86 as emit, $fd0e4966f38fc4e4$export$b4cd8de5710bc55c as on, $fd0e4966f38fc4e4$export$46c54e4f8c1e17a1 as emitAsync, $fd0e4966f38fc4e4$export$7bd69e88aabac8f1 as once, $fd0e4966f38fc4e4$export$f68a7c3078a08370 as inspect};
 //# sourceMappingURL=module.js.map

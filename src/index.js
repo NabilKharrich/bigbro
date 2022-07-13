@@ -8,6 +8,7 @@ import {
 
 /**
  * Adds a new bus event callback or event listener
+ *
  * @param {string|Element} first bus event name or dom element
  * @param {string|Function} middle bus event callback or event type
  * @param {Function|undefined} last listener callback
@@ -36,6 +37,7 @@ export const on = (first, middle, last = undefined, opts = {}) => {
 
 /**
  * Removes a bus event callback or event listener
+ *
  * @param {string|Element} first bus event name or dom element
  * @param {string|Function} middle bus event callback or event type
  * @param {Function|undefined} last listener callback
@@ -61,6 +63,7 @@ export const off = (first, middle, last) => {
 
 /**
  * Adds the event and removes it after the first occurrence
+ *
  * @param {string|Element} first bus event name or dom element
  * @param {string|Function} middle bus event callback or event type
  * @param {Function|undefined} last listener callback
@@ -86,6 +89,7 @@ export const once = (first, middle, last = undefined, opts = {}) => {
 
 /**
  * Emits the given event
+ *
  * @param {string} event bus event name
  * @param  {...any} params optional parameters for the callbacks
  */
@@ -99,6 +103,7 @@ export const emit = (event, ...params) => {
 
 /**
  * Emits the given event asyncronously
+ *
  * @param {string} event bus event name
  * @param  {...any} params optional parameters for the callbacks
  */
@@ -112,6 +117,7 @@ export const emitAsync = (event, ...params) => {
 
 /**
  * Returns a clone of the events stack. Usefull for debugging
+ *
  * @returns Object
  */
 export const inspect = () => clone();

@@ -2,9 +2,15 @@
   "name": "@nabilk/bigbro",
   "version": "1.0.5",
   "description": "A complete event library",
-  "source": "src/index.js",
-  "main": "build/main.js",
-  "module": "build/module.js",
+  "source": "./src/index.js",
+  "main": "./build/main.js",
+  "module": "./build/module.js",
+  "exports": {
+    ".": {
+      "import": "./build/module.js",
+      "require": "./build/main.js"
+    }
+  },
   "scripts": {
     "start": "parcel test/src/index.html",
     "watch": "parcel watch",
@@ -36,6 +42,6 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jsdoc-to-markdown": "^7.1.1",
-    "parcel": "^2.6.2"
+    "parcel": "^2.0.0-rc.0"
   }
 }
