@@ -3,22 +3,19 @@
   "description": "A complete event library",
   "version": "1.0.9",
   "type": "module",
-  "exports": {
-    ".": {
-      "import": "./dist/bigbro.mjs",
-      "require": "./dist/bigbro.umd.cjs"
-    }
-  },
-  "module": "./dist/bigbro.mjs",
-  "main": "./dist/bigbro.umd.cjs",
+  "main": "dist/bigbro.es.js",
+  "unpkg": "dist/bigbro.umd.js",
+  "types": "types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "doc": "jsdoc2md src/index.js"
+    "doc": "jsdoc2md src/index.js",
+    "types": "npx -p typescript tsc src/index.js --declaration --allowJs --emitDeclarationOnly --declarationMap --outDir types"
   },
   "repository": {
     "type": "git",
@@ -46,9 +43,5 @@
     "eslint-plugin-prettier": "^4.0.0",
     "jsdoc-to-markdown": "^7.1.1",
     "vite": "^3.0.0"
-  },
-  "dependencies": {
-    "@angular/cli": "^14.0.5",
-    "@angular/router": "^14.0.6"
   }
 }

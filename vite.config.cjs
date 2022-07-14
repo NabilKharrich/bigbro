@@ -7,7 +7,7 @@ module.exports = defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.js'),
       name: 'Bigbro',
-      fileName: 'bigbro',
+      fileName: (format) => `bigbro.${format}.js`,
     },
   },
 });
