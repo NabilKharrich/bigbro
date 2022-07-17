@@ -1,7 +1,12 @@
-export function on(first: string | Element, middle: string | Function, last?: Function | undefined, opts?: any): void;
-export function off(first: string | Element, middle: string | Function, last: Function | undefined): void;
-export function once(first: string | Element, middle: string | Function, last?: Function | undefined, opts?: any): void;
-export function emit(event: string, ...params: any[]): void;
-export function emitAsync(event: string, ...params: any[]): any;
-export function inspect(): {};
+declare type RemoveEvent = (first: string | (Window & typeof globalThis) | HTMLElement, middle: string | Function, last?: EventListenerOrEventListenerObject) => void;
+declare type AddEvent = (first: string | (Window & typeof globalThis) | HTMLElement, middle: string | Function, last?: Function, opts?: AddEventListenerOptions) => void;
+declare type EmitEvent = (event: string, ...params: unknown[]) => void | Promise<Function[]>;
+declare const on: AddEvent;
+declare const once: AddEvent;
+declare const off: RemoveEvent;
+declare const clear: (event: string) => void;
+declare const emit: EmitEvent;
+declare const emitAsync: EmitEvent;
+declare const inspect: () => Map<string, Set<Function>>;
+export { on, once, off, emit, emitAsync, clear, inspect };
 //# sourceMappingURL=index.d.ts.map
