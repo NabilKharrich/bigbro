@@ -1,122 +1,53 @@
-import {
-  bbStack,
-  addBus,
-  addBusListener,
-  removeBus,
-  removeBusListener,
-  addListener,
-  removeListener,
-  listenerExists,
-  splitEvents,
-  clone,
-} from './utils';
+const bus = new Map<string, Set<any>>();
 
-type EventOrDom = string | (Window & typeof globalThis) | Element;
+const on = (
+  events: string,
+  domOrCb: Function | Window | Element,
+  cb?: EventListener,
+  options?: EventListenerOptions
+) => {
+  events
+    .split(' ')
+    .forEach((event) =>
+      cb && typeof domOrCb !== 'function'
+        ? domOrCb.addEventListener(event, cb, options)
+        : bus.set(event, new Set()).get(event)?.add(domOrCb)
+    );
+};
 
-type RemoveEvent = (
-  a: EventOrDom,
-  b: string | Function,
-  c?: EventListener
-) => void;
+const off = (
+  events: string,
+  domOrCb: Function | Window | Element,
+  cb?: EventListener
+) => {
+  events
+    .split(' ')
+    .forEach((event) =>
+      cb && typeof domOrCb !== 'function'
+        ? domOrCb.removeEventListener(event, cb)
+        : bus.get(event)?.delete(domOrCb)
+    );
+};
 
-type AddEvent = (
-  a: EventOrDom,
-  b: string | Function,
-  c?: EventListener | Function,
-  d?: EventListenerOptions
-) => void;
+const emit = <Targs extends any[]>(event: string, ...args: Targs) => {
+  bus.get(event)?.forEach((domOrCb) => domOrCb(args));
+};
 
-type EmitEvent = (
+const emitAsync = <P extends any[], Targs extends any[]>(
   event: string,
-  ...params: unknown[]
-) => void | Promise<Function[]>;
-
-const on: AddEvent = (first, middle, last, opts) => {
-  const e = splitEvents((!last ? first : middle) as string);
-
-  if (!last) {
-    for (let i = 0; i < e.length; i++) {
-      const ev = e[i];
-
-      if (listenerExists(ev, middle as Function)) return;
-
-      addBus(ev);
-      addBusListener(ev, middle as Function);
-    }
-  } else {
-    for (let i = 0; i < e.length; i++) {
-      const ev = e[i];
-      addListener(
-        first as (Window & typeof globalThis) | Element,
-        ev,
-        last as EventListenerOrEventListenerObject,
-        opts
-      );
-    }
-  }
-};
-
-const once: AddEvent = (first, middle, last, opts) => {
-  const e = splitEvents((!last ? first : middle) as string);
-
-  if (!last) {
-    for (let i = 0; i < e.length; i++) {
-      const ev = e[i];
-
-      const fn = async () => {
-        off(ev, fn);
-        typeof middle === 'function' && (await middle());
-      };
-
-      on(ev, fn);
-    }
-  } else {
-    for (let i = 0; i < e.length; i++) {
-      const ev = e[i];
-
-      const fn: EventListener = () => {
-        typeof last === 'function' && last();
-        off(first, ev, fn);
-      };
-
-      on(first, ev, fn, opts);
-    }
-  }
-};
-
-const off: RemoveEvent = (first, middle, last) => {
-  const e = splitEvents((!last ? first : middle) as string);
-
-  if (!last) {
-    for (let i = 0; i < e.length; i++) {
-      const ev = e[i];
-
-      if (!listenerExists(ev, middle as Function)) return;
-      removeBusListener(ev, middle as Function);
-    }
-  } else {
-    for (let i = 0; i < e.length; i++) {
-      const ev = e[i];
-      removeListener(first as (Window & typeof globalThis) | Element, ev, last);
-    }
-  }
-};
-
-const clear = (event: string) => {
-  removeBus(event);
-};
-
-const emit: EmitEvent = (event, ...params) => {
-  bbStack.get(event)?.forEach((cb) => cb(...params));
-};
-
-const emitAsync: EmitEvent = (event, ...params) =>
-  Promise.all(
-    [...((bbStack.get(event) as Set<Function>) || [])].map((cb) => {
-      return Promise.resolve(cb(...params));
-    })
+  ...args: Targs
+) => {
+  return Promise.all(
+    [...(bus.get(event) || [])].map((domOrCb) =>
+      Promise.resolve(domOrCb(args) as P)
+    )
   );
+};
 
-const inspect = () => clone();
+const clear = (events: string) => {
+  events.split(' ').forEach((event) => bus.delete(event));
+};
 
-export { on, once, off, emit, emitAsync, clear, inspect };
+const inspect = () => new Map(bus);
+
+export { on, off, emit, emitAsync, clear, inspect };

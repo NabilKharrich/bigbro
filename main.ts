@@ -1,4 +1,4 @@
-import { emit, off, on, once } from './src/index';
+import { emit, emitAsync, inspect, off, on } from './src/index';
 
 const addBtn = document.querySelector('button.add');
 const removeBtn = document.querySelector('button.remove');
@@ -8,6 +8,24 @@ const handleWindow = () => {
   console.log('add!');
 };
 
-once(window, 'resize wheel', handleWindow);
+const myCb = () => {
+  console.log('click!');
+};
 
-removeBtn && on(removeBtn, 'click', () => off(window, 'resize', handleWindow));
+const myCb2 = (a: number, b, c) => {};
+const prom = () =>
+  new Promise((res) => {
+    setTimeout(() => {
+      res('');
+    }, 2000);
+  });
+
+async function trigger() {
+  await emitAsync('myEv');
+  console.log(inspect());
+
+  console.log('done!');
+}
+
+addBtn && on('click', addBtn, trigger);
+console.log(inspect());
