@@ -5,92 +5,139 @@ A complete event library
 ![license](https://img.shields.io/github/license/NabilKharrich/bigbro)
 ![npm](https://img.shields.io/npm/v/@nabilk/bigbro)
 
-## Constants
+## Table of contents
 
-<dl>
-<dt><a href="#on">on</a></dt>
-<dd><p>Adds a new bus event callback or event listener</p>
-</dd>
-<dt><a href="#off">off</a></dt>
-<dd><p>Removes a bus event callback or event listener</p>
-</dd>
-<dt><a href="#once">once</a></dt>
-<dd><p>Adds the event and removes it after the first occurrence</p>
-</dd>
-<dt><a href="#emit">emit</a></dt>
-<dd><p>Emits the given event</p>
-</dd>
-<dt><a href="#emitAsync">emitAsync</a></dt>
-<dd><p>Emits the given event asyncronously</p>
-</dd>
-<dt><a href="#inspect">inspect</a> ⇒</dt>
-<dd><p>Returns a clone of the events stack. Usefull for debugging</p>
-</dd>
-</dl>
+### Functions
 
-<a name="on"></a>
+- [on](README.md#on)
+- [off](README.md#off)
+- [emit](README.md#emit)
+- [emitAsync](README.md#emitasync)
+- [remove](README.md#remove)
+- [inspect](README.md#inspect)
 
-## on
+## Functions
 
-Adds a new bus event callback or event listener
+### on
 
-| Param  | Type                                            | Description                      |
-| ------ | ----------------------------------------------- | -------------------------------- |
-| first  | <code>string</code> \| <code>Element</code>     | bus event name or dom element    |
-| middle | <code>string</code> \| <code>function</code>    | bus event callback or event type |
-| last   | <code>function</code> \| <code>undefined</code> | listener callback                |
-| opts   | <code>Object</code>                             | event type options               |
+▸ **on**(`events`, `domOrCb`, `listener?`, `options?`): `void`
 
-<a name="off"></a>
+Add one or more event listeners or register a callback to one or more events
 
-## off
+#### Parameters
 
-Removes a bus event callback or event listener
+| Name        | Type                                | Description                     |
+| :---------- | :---------------------------------- | :------------------------------ |
+| `events`    | `string`                            | the name of one or more events  |
+| `domOrCb`   | `Function` \| `Window` \| `Element` | the dom element or bus callback |
+| `listener?` | `EventListener`                     | the dom event listener          |
+| `options?`  | `EventListenerOptions`              | the dom event options           |
 
-| Param  | Type                                            | Description                      |
-| ------ | ----------------------------------------------- | -------------------------------- |
-| first  | <code>string</code> \| <code>Element</code>     | bus event name or dom element    |
-| middle | <code>string</code> \| <code>function</code>    | bus event callback or event type |
-| last   | <code>function</code> \| <code>undefined</code> | listener callback                |
+#### Returns
 
-<a name="once"></a>
+`void`
 
-## once
+---
 
-Adds the event and removes it after the first occurrence
+### off
 
-| Param  | Type                                            | Description                      |
-| ------ | ----------------------------------------------- | -------------------------------- |
-| first  | <code>string</code> \| <code>Element</code>     | bus event name or dom element    |
-| middle | <code>string</code> \| <code>function</code>    | bus event callback or event type |
-| last   | <code>function</code> \| <code>undefined</code> | listener callback                |
-| opts   | <code>Object</code>                             | event type options               |
+▸ **off**(`events`, `domOrCb`, `listener?`): `void`
 
-<a name="emit"></a>
+Remove one or more event listeners or detatches a callback from on or more events
 
-## emit
+#### Parameters
 
-Emits the given event
+| Name        | Type                                | Description                     |
+| :---------- | :---------------------------------- | :------------------------------ |
+| `events`    | `string`                            | the name of one or more events  |
+| `domOrCb`   | `Function` \| `Window` \| `Element` | the dom element or bus callback |
+| `listener?` | `EventListener`                     | the dom event listener          |
 
-| Param     | Type                | Description                           |
-| --------- | ------------------- | ------------------------------------- |
-| event     | <code>string</code> | bus event name                        |
-| ...params | <code>any</code>    | optional parameters for the callbacks |
+#### Returns
 
-<a name="emitAsync"></a>
+`void`
 
-## emitAsync
+---
 
-Emits the given event asyncronously
+### emit
 
-| Param     | Type                | Description                           |
-| --------- | ------------------- | ------------------------------------- |
-| event     | <code>string</code> | bus event name                        |
-| ...params | <code>any</code>    | optional parameters for the callbacks |
+▸ **emit**<`Targs`\>(`event`, ...`args`): `void`
 
-<a name="inspect"></a>
+Emit the desired event
 
-## inspect ⇒ <code>Object</code>
+#### Type parameters
 
-Returns a clone of the events stack. Usefull for debugging
-**Returns**: Object
+| Name    | Type            |
+| :------ | :-------------- |
+| `Targs` | extends `any`[] |
+
+#### Parameters
+
+| Name      | Type     | Description                                        |
+| :-------- | :------- | :------------------------------------------------- |
+| `event`   | `string` | the name of the event                              |
+| `...args` | `Targs`  | the arguments that will be passed to the callbacks |
+
+#### Returns
+
+`void`
+
+---
+
+### emitAsync
+
+▸ **emitAsync**<`P`, `Targs`\>(`event`, ...`args`): `Promise`<`Awaited`<`P`\>[]\>
+
+Emit the desired event asynchronously
+
+#### Type parameters
+
+| Name    | Type            |
+| :------ | :-------------- |
+| `P`     | extends `any`[] |
+| `Targs` | extends `any`[] |
+
+#### Parameters
+
+| Name      | Type     | Description                                        |
+| :-------- | :------- | :------------------------------------------------- |
+| `event`   | `string` | the name of the event                              |
+| `...args` | `Targs`  | the arguments that will be passed to the callbacks |
+
+#### Returns
+
+`Promise`<`Awaited`<`P`\>[]\>
+
+the promise
+
+---
+
+### remove
+
+▸ **remove**(`events`): `void`
+
+Remove one or more events from the stack
+
+#### Parameters
+
+| Name     | Type     | Description                    |
+| :------- | :------- | :----------------------------- |
+| `events` | `string` | the name of one or more events |
+
+#### Returns
+
+`void`
+
+---
+
+### inspect
+
+▸ **inspect**(): `Map`<`string`, `Set`<`any`\>\>
+
+Generate a clone of the bus stack, usefull for debug
+
+#### Returns
+
+`Map`<`string`, `Set`<`any`\>\>
+
+a clone of the bus stack

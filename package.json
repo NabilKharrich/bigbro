@@ -16,7 +16,6 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "doc": "jsdoc2md src/index.js",
-    "jsdoc": "npx typedoc src/index.ts",
     "types": "npx tsc"
   },
   "repository": {
@@ -44,7 +43,9 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jsdoc-to-markdown": "^7.1.1",
+    "ts-readme": "^1.1.3",
     "typedoc": "^0.23.7",
+    "typedoc-plugin-markdown": "^3.13.3",
     "typescript": "^4.7.4",
     "vite": "^3.0.0"
   }
