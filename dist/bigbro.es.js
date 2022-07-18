@@ -10,8 +10,8 @@ const c = /* @__PURE__ */ new Map(), f = (o, e, t, n) => {
   });
 }, p = (o, ...e) => {
   var t;
-  (t = c.get(o)) == null || t.forEach((n) => n(e));
-}, r = (o, ...e) => Promise.all([...c.get(o) || []].map((t) => Promise.resolve(t(e)))), l = (o) => {
+  (t = c.get(o)) == null || t.forEach((n) => n(...e));
+}, r = (o, ...e) => Promise.all([...c.get(o) || []].map((t) => Promise.resolve(t(...e)))), l = (o) => {
   o.split(" ").forEach((e) => c.delete(e));
 }, E = () => new Map(c);
 export {

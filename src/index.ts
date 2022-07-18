@@ -51,7 +51,7 @@ const off = (
  * @param args the arguments that will be passed to the callbacks
  */
 const emit = <Targs extends any[]>(event: string, ...args: Targs) => {
-  bus.get(event)?.forEach((domOrCb) => domOrCb(args));
+  bus.get(event)?.forEach((domOrCb) => domOrCb(...args));
 };
 
 /**
@@ -67,7 +67,7 @@ const emitAsync = <P extends any[], Targs extends any[]>(
 ) => {
   return Promise.all(
     [...(bus.get(event) || [])].map((domOrCb) =>
-      Promise.resolve(domOrCb(args) as P)
+      Promise.resolve(domOrCb(...args) as P)
     )
   );
 };
