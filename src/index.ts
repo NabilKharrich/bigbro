@@ -12,8 +12,8 @@ const on = <
   T extends keyof GlobalEventHandlersEventMap,
   D extends { addEventListener: any }
 >(
-  events: T,
-  domOrCb: D,
+  events: T | string,
+  domOrCb: D | Function,
   listener?: (ev: GlobalEventHandlersEventMap[T]) => void,
   options: boolean | AddEventListenerOptions = false
 ) => {

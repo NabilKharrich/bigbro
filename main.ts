@@ -10,3 +10,5 @@ const handle = (e) => {
 
 addBtn && on('click', addBtn, handle);
 // addBtn && off('submit', window, handle);
+on('pippo', () => {});
+on('su', () => {});
