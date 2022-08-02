@@ -37,8 +37,8 @@ const off = <
   T extends keyof GlobalEventHandlersEventMap,
   D extends { removeEventListener: any }
 >(
-  events: T,
-  domOrCb: D,
+  events: T | string,
+  domOrCb: D | Function,
   listener?: (ev: GlobalEventHandlersEventMap[T]) => void
 ) => {
   events

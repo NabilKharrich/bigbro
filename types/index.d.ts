@@ -18,7 +18,7 @@ declare const on: <T extends keyof GlobalEventHandlersEventMap, D extends {
  */
 declare const off: <T extends keyof GlobalEventHandlersEventMap, D extends {
     removeEventListener: any;
-}>(events: T, domOrCb: D, listener?: ((ev: GlobalEventHandlersEventMap[T]) => void) | undefined) => void;
+}>(events: string | T, domOrCb: Function | D, listener?: ((ev: GlobalEventHandlersEventMap[T]) => void) | undefined) => void;
 /**
  * Emit the desired event
  *
