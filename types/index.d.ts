@@ -8,7 +8,7 @@
  */
 declare const on: <T extends keyof GlobalEventHandlersEventMap, D extends {
     addEventListener: any;
-}>(events: T, domOrCb: D, listener?: ((ev: GlobalEventHandlersEventMap[T]) => void) | undefined, options?: boolean | AddEventListenerOptions) => void;
+}>(events: string | T, domOrCb: Function | D, listener?: ((ev: GlobalEventHandlersEventMap[T]) => void) | undefined, options?: boolean | AddEventListenerOptions) => void;
 /**
  * Remove one or more event listeners or detatches a callback from on or more events
  *
