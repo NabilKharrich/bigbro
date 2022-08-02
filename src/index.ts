@@ -8,11 +8,14 @@ const bus = new Map<string, Set<any>>();
  * @param listener the dom event listener
  * @param options the dom event options
  */
-const on = (
-  events: string,
-  domOrCb: Function | Window | Element,
-  listener?: EventListener,
-  options?: EventListenerOptions
+const on = <
+  T extends keyof GlobalEventHandlersEventMap,
+  D extends { addEventListener: any }
+>(
+  events: T,
+  domOrCb: D,
+  listener?: (ev: GlobalEventHandlersEventMap[T]) => void,
+  options: boolean | AddEventListenerOptions = false
 ) => {
   events
     .split(' ')
@@ -30,10 +33,13 @@ const on = (
  * @param domOrCb the dom element or bus callback
  * @param listener the dom event listener
  */
-const off = (
-  events: string,
-  domOrCb: Function | Window | Element,
-  listener?: EventListener
+const off = <
+  T extends keyof GlobalEventHandlersEventMap,
+  D extends { removeEventListener: any }
+>(
+  events: T,
+  domOrCb: D,
+  listener?: (ev: GlobalEventHandlersEventMap[T]) => void
 ) => {
   events
     .split(' ')

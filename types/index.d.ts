@@ -6,7 +6,9 @@
  * @param listener the dom event listener
  * @param options the dom event options
  */
-declare const on: (events: string, domOrCb: Function | Window | Element, listener?: EventListener, options?: EventListenerOptions) => void;
+declare const on: <T extends keyof GlobalEventHandlersEventMap, D extends {
+    addEventListener: any;
+}>(events: T, domOrCb: D, listener?: ((ev: GlobalEventHandlersEventMap[T]) => void) | undefined, options?: boolean | AddEventListenerOptions) => void;
 /**
  * Remove one or more event listeners or detatches a callback from on or more events
  *
@@ -14,7 +16,9 @@ declare const on: (events: string, domOrCb: Function | Window | Element, listene
  * @param domOrCb the dom element or bus callback
  * @param listener the dom event listener
  */
-declare const off: (events: string, domOrCb: Function | Window | Element, listener?: EventListener) => void;
+declare const off: <T extends keyof GlobalEventHandlersEventMap, D extends {
+    removeEventListener: any;
+}>(events: T, domOrCb: D, listener?: ((ev: GlobalEventHandlersEventMap[T]) => void) | undefined) => void;
 /**
  * Emit the desired event
  *
